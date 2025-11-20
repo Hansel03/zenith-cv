@@ -1,23 +1,23 @@
 ---
 import { getEntry } from 'astro:content';
-import { enUS } from 'date-fns/locale';
+import { es } from 'date-fns/locale';
 
 import CvContent from '@/web/components/cv-content.astro';
 import { initializeWebContext } from '@/web/utils/initialize-web-context';
 
 await initializeWebContext(Astro, {
-  locale: enUS,
-  translations: getEntry('translations', 'en'),
+  locale: es,
+  translations: getEntry('translations', 'es'),
   dateFormat: 'MMMM yyyy',
   theme: 'custom',
   pdf: {
     path: '/generated/pdf/index.pdf',
-    label: 'Download resume',
+    label: 'Descargar CV',
     filename: 'mark-freeman-resume.pdf',
   },
 });
 
-const basicsEntry = await getEntry('basics', 'main');
+const basicsEntry = await getEntry('basics', 'main-es');
 const metadataEntry = await getEntry('metadata', 'main');
 
 if (!basicsEntry) throw new Error('Basics entry not found');
@@ -27,9 +27,8 @@ if (!metadataEntry) throw new Error('Metadata entry not found');
 <script is:inline>
   if (typeof localStorage !== 'undefined') {
     const saved = localStorage.getItem('lang');
-    const browser = navigator.language;
-    if (saved === 'es' || (!saved && browser.startsWith('es'))) {
-      window.location.href = '/es';
+    if (saved === 'en') {
+      window.location.href = '/';
     }
   }
 </script>

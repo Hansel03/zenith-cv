@@ -1,0 +1,29 @@
+---
+const currentPath = Astro.url.pathname;
+const isSpanish = currentPath.startsWith('/es');
+const targetPath = isSpanish ? '/' : '/es';
+const targetLang = isSpanish ? 'en' : 'es';
+const label = isSpanish ? 'EN' : 'ES';
+---
+
+<a
+  href={targetPath}
+  id="language-switch-button"
+  class="fixed bottom-5 right-20 rounded-full border border-color-border bg-color-bg-card p-3 text-sm font-bold text-color-icon-dark shadow transition-colors hover:bg-color-bg-light"
+  aria-label={`Switch to ${targetLang === 'en' ? 'English' : 'Spanish'}`}
+  data-target-lang={targetLang}
+>
+  {label}
+</a>
+
+<script is:inline>
+  const button = document.getElementById('language-switch-button');
+  if (button) {
+    button.addEventListener('click', () => {
+      const targetLang = button.getAttribute('data-target-lang');
+      if (targetLang) {
+        localStorage.setItem('lang', targetLang);
+      }
+    });
+  }
+</script>

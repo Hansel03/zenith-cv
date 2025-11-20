@@ -9,7 +9,7 @@ const label = isSpanish ? 'EN' : 'ES';
 <a
   href={targetPath}
   id="language-switch-button"
-  class="fixed bottom-5 right-20 rounded-full border border-color-border bg-color-bg-card p-3 text-sm font-bold text-color-icon-dark shadow transition-colors hover:bg-color-bg-light"
+  class="fixed bottom-5 right-20 z-50 rounded-full border border-color-border bg-color-bg-card p-3 text-sm font-bold text-color-icon-dark shadow transition-colors hover:bg-color-bg-light"
   aria-label={`Switch to ${targetLang === 'en' ? 'English' : 'Spanish'}`}
   data-target-lang={targetLang}
 >

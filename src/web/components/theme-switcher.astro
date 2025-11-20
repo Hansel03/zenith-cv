@@ -10,7 +10,7 @@ const context = getGlobalContext<ContextSlice<'theme' | 'i18n'>>(Astro);
   context.theme === 'custom' && (
     <button
       id="theme-switch-button"
-      class="fixed bottom-5 right-5 rounded-full border border-color-border bg-color-bg-card p-3 text-color-icon-dark shadow"
+      class="fixed bottom-5 right-5 z-50 rounded-full border border-color-border bg-color-bg-card p-3 text-color-icon-dark shadow"
       aria-label={context.i18n.t('toggle_theme')}
     >
       <Icon data-mode="light" name="lucide:sun" class="hidden size-5 dark:flex" />

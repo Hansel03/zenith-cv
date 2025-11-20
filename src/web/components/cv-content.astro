@@ -16,7 +16,6 @@ import Interest from '@/web/components/interest.astro';
 import Job from '@/web/components/job.astro';
 import Layout from '@/web/components/layout.astro';
 import { Metadata } from '@/web/components/metadata';
-import Project from '@/web/components/project.astro';
 import Reference from '@/web/components/reference.astro';
 import { Section, SectionTitle, Subsection, SubsectionTitle } from '@/web/components/section';
 import { Sidebar, SidebarItem } from '@/web/components/sidebar';
@@ -42,7 +41,7 @@ const { basicsEntry, metadataEntry } = Astro.props;
     <SidebarItem sectionId="basics" icon="fa6-solid:user">About me</SidebarItem>
     <SidebarItem sectionId="skills" icon="fa6-solid:bars-progress">Skills</SidebarItem>
     <SidebarItem sectionId="jobs" icon="fa6-solid:suitcase">Work experience</SidebarItem>
-    <SidebarItem sectionId="projects" icon="fa6-solid:rocket">Projects</SidebarItem>
+
     <SidebarItem sectionId="references" icon="fa6-solid:comment">References</SidebarItem>
     <SidebarItem sectionId="achievements" icon="fa6-solid:trophy">Achievements</SidebarItem>
     <SidebarItem sectionId="education" icon="fa6-solid:graduation-cap">Education</SidebarItem>
@@ -99,14 +98,7 @@ const { basicsEntry, metadataEntry } = Astro.props;
       <Job entry={getEntry('jobs', 'codepen')} />
     </VerticalList>
   </Section>
-  <Section class="gap-8" id="projects">
-    <SectionTitle>Projects</SectionTitle>
-    <VerticalList class="gap-10">
-      <Project entry={getEntry('projects', 'moni-buddy')} />
-      <Separator />
-      <Project entry={getEntry('projects', 'user-board')} />
-    </VerticalList>
-  </Section>
+
   <Section class="gap-8" id="references">
     <SectionTitle>References</SectionTitle>
     <VerticalList class="gap-10">

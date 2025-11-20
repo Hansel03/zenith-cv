@@ -97,19 +97,7 @@ export const collections = {
           .optional(),
       }),
   }),
-  projects: defineCollection({
-    type: 'content',
-    schema: ({ image }) =>
-      z.object({
-        name: z.string(),
-        description: z.string(),
-        image: image().or(z.string()).optional(),
-        startDate: z.date(),
-        endDate: z.date().optional(),
-        details: z.array(labelledValueSchema).min(1).optional(),
-        skills: z.array(reference('skills')).min(1).optional(),
-      }),
-  }),
+
   references: defineCollection({
     type: 'content',
     schema: ({ image }) =>

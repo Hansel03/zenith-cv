@@ -12,7 +12,6 @@ import Footer from '@/pdf/components/footer.astro';
 import Interest from '@/pdf/components/interest.astro';
 import Job from '@/pdf/components/job.astro';
 import Layout from '@/pdf/components/layout.astro';
-import Project from '@/pdf/components/project.astro';
 import Reference from '@/pdf/components/reference.astro';
 import { Section, SectionTitle, Subsection, SubsectionTitle } from '@/pdf/components/section';
 import { Skill } from '@/pdf/components/skills';
@@ -88,14 +87,7 @@ await initializePdfContext(Astro, {
       <Job entry={getEntry('jobs', 'codepen')} />
     </VerticalList>
   </Section>
-  <Section class="gap-4">
-    <SectionTitle>Projects</SectionTitle>
-    <VerticalList class="gap-6">
-      <Project entry={getEntry('projects', 'moni-buddy')} />
-      <Separator />
-      <Project entry={getEntry('projects', 'user-board')} />
-    </VerticalList>
-  </Section>
+
   <Section class="gap-4">
     <SectionTitle>References</SectionTitle>
     <VerticalList class="gap-4">

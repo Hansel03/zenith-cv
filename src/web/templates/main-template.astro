@@ -16,7 +16,6 @@ import Interest from '@/web/components/interest.astro';
 import Job from '@/web/components/job.astro';
 import Layout from '@/web/components/layout.astro';
 import { Metadata } from '@/web/components/metadata';
-import Reference from '@/web/components/reference.astro';
 import { Section, SectionTitle, Subsection, SubsectionTitle } from '@/web/components/section';
 import { Sidebar, SidebarItem } from '@/web/components/sidebar';
 import { Skill } from '@/web/components/skills';
@@ -141,17 +140,6 @@ await initializeWebContext(Astro, {
             {section.entries.map((entry, i, arr) => (
               <Fragment>
                 <Job entry={getEntry('jobs', entry)} {...pickSectionProps(section)} />
-                {i < arr.length - 1 && <Separator />}
-              </Fragment>
-            ))}
-          </VerticalList>
-        )}
-
-        {section.collection === 'references' && (
-          <VerticalList class="gap-10">
-            {section.entries.map((entry, i, arr) => (
-              <Fragment>
-                <Reference entry={getEntry('references', entry)} {...pickSectionProps(section)} />
                 {i < arr.length - 1 && <Separator />}
               </Fragment>
             ))}

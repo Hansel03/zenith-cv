@@ -98,19 +98,6 @@ export const collections = {
       }),
   }),
 
-  references: defineCollection({
-    type: 'content',
-    schema: ({ image }) =>
-      z.object({
-        author: z.object({
-          name: z.string(),
-          position: z.string().optional(),
-          relation: z.string().optional(),
-          image: image().or(z.string()).optional(),
-          url: z.string().url().optional(),
-        }),
-      }),
-  }),
   skills: defineCollection({
     type: 'content',
     schema: z.object({

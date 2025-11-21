@@ -121,15 +121,6 @@ const { basicsEntry, metadataEntry } = Astro.props;
     <SectionTitle>Favorites</SectionTitle>
     <VerticalList class="gap-10">
       <Subsection class="gap-2">
-        <SubsectionTitle>Videos I watched</SubsectionTitle>
-        <GridList class="gap-4 lg:grid-cols-2">
-          <Favorite image="video" entry={getEntry('favorites', 'videos/principled-coders')} />
-          <Favorite image="video" entry={getEntry('favorites', 'videos/scaling-yourself')} />
-          <Favorite image="video" entry={getEntry('favorites', 'videos/mind-the-gap')} />
-          <Favorite image="video" entry={getEntry('favorites', 'videos/monads')} />
-        </GridList>
-      </Subsection>
-      <Subsection class="gap-2">
         <SubsectionTitle>People I learn from</SubsectionTitle>
         <GridList class="gap-4 md:grid-cols-2">
           <Favorite image="person" entry={getEntry('favorites', 'people/addy-osmani')} />

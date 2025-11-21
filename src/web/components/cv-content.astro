@@ -121,32 +121,6 @@ const { basicsEntry, metadataEntry } = Astro.props;
     <SectionTitle>Favorites</SectionTitle>
     <VerticalList class="gap-10">
       <Subsection class="gap-2">
-        <SubsectionTitle>Books I read</SubsectionTitle>
-        <GridList class="gap-4 lg:grid-cols-2">
-          <Favorite image="poster" entry={getEntry('favorites', 'books/domain-driven-design')} />
-          <Favorite image="poster" entry={getEntry('favorites', 'books/grokkking-simplicity')} />
-          <Favorite image="poster" entry={getEntry('favorites', 'books/learning-javascript-design-patterns')} />
-          <Favorite image="poster" entry={getEntry('favorites', 'books/the-pragmatic-programmer')} />
-        </GridList>
-      </Subsection>
-      <Subsection class="gap-2">
-        <SubsectionTitle>Articles I come back to</SubsectionTitle>
-        <GridList class="gap-4 lg:grid-cols-2">
-          <Favorite
-            withSource
-            image="favicon"
-            entry={getEntry('favorites', 'articles/client-side-architecture-basics')}
-          />
-          <Favorite
-            withSource
-            image="favicon"
-            entry={getEntry('favorites', 'articles/future-facing-frontend-architectures')}
-          />
-          <Favorite withSource image="favicon" entry={getEntry('favorites', 'articles/practical-react-query')} />
-          <Favorite withSource image="favicon" entry={getEntry('favorites', 'articles/the-least-worst-architecture')} />
-        </GridList>
-      </Subsection>
-      <Subsection class="gap-2">
         <SubsectionTitle>Videos I watched</SubsectionTitle>
         <GridList class="gap-4 lg:grid-cols-2">
           <Favorite image="video" entry={getEntry('favorites', 'videos/principled-coders')} />

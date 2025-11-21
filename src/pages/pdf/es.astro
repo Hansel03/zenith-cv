@@ -107,18 +107,6 @@ await initializePdfContext(Astro, {
     <SectionTitle>Favoritos</SectionTitle>
     <VerticalList class="gap-5">
       <Subsection class="gap-1.5">
-        <SubsectionTitle>Libros que leo</SubsectionTitle>
-        <VerticalList class="gap-2.5">
-          <Favorite icon="material-symbols:book-2" entry={getEntry('favorites', 'books/domain-driven-design')} />
-          <Favorite icon="material-symbols:book-2" entry={getEntry('favorites', 'books/grokkking-simplicity')} />
-          <Favorite
-            icon="material-symbols:book-2"
-            entry={getEntry('favorites', 'books/learning-javascript-design-patterns')}
-          />
-          <Favorite icon="material-symbols:book-2" entry={getEntry('favorites', 'books/the-pragmatic-programmer')} />
-        </VerticalList>
-      </Subsection>
-      <Subsection class="gap-1.5">
         <SubsectionTitle>Artículos a los que vuelvo</SubsectionTitle>
         <VerticalList class="gap-2.5">
           <Favorite

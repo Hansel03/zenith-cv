@@ -8,5 +8,17 @@
   "current": "Actual",
   "related_skills": "Habilidades relacionadas",
   "toggle_theme": "Cambiar tema",
-  "popover_trigger": "Leer más"
+  "popover_trigger": "Leer más",
+  "about_me": "Sobre mí",
+  "skills": "Habilidades",
+  "work_experience": "Experiencia laboral",
+  "achievements": "Logros",
+  "education": "Educación",
+  "favorites": "Favoritos",
+  "technologies": "Tecnologías",
+  "tools": "Herramientas",
+  "languages": "Idiomas",
+  "work": "Trabajo",
+  "people_i_learn_from": "Personas de las que aprendo",
+  "interests": "Intereses"
 }

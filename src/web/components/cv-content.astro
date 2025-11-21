@@ -8,6 +8,8 @@ import AccentColors from '@/styles/colors/accent/indigo.astro';
 import DuskColors from '@/styles/colors/dusk/slate.astro';
 import ElementColors from '@/styles/colors/elements/default.astro';
 import Font from '@/styles/fonts/inter.astro';
+import type { ContextSlice } from '@/types/context';
+import { getGlobalContext } from '@/utils/get-global-context';
 import Achievement from '@/web/components/achievement.astro';
 import { Basics } from '@/web/components/basics';
 import Education from '@/web/components/education.astro';
@@ -26,6 +28,8 @@ interface Props {
 }
 
 const { basicsEntry, metadataEntry } = Astro.props;
+const context = getGlobalContext<ContextSlice<'website' | 'i18n'>>(Astro);
+const t = context.i18n.t;
 ---
 
 <Layout class="gap-16 [&_section]:scroll-mt-8">
@@ -37,20 +41,20 @@ const { basicsEntry, metadataEntry } = Astro.props;
     <Metadata entry={metadataEntry} />
   </Fragment>
   <Sidebar>
-    <SidebarItem sectionId="basics" icon="fa6-solid:user">About me</SidebarItem>
-    <SidebarItem sectionId="skills" icon="fa6-solid:bars-progress">Skills</SidebarItem>
-    <SidebarItem sectionId="jobs" icon="fa6-solid:suitcase">Work experience</SidebarItem>
+    <SidebarItem sectionId="basics" icon="fa6-solid:user">{t('about_me')}</SidebarItem>
+    <SidebarItem sectionId="skills" icon="fa6-solid:bars-progress">{t('skills')}</SidebarItem>
+    <SidebarItem sectionId="jobs" icon="fa6-solid:suitcase">{t('work_experience')}</SidebarItem>
 
-    <SidebarItem sectionId="achievements" icon="fa6-solid:trophy">Achievements</SidebarItem>
-    <SidebarItem sectionId="education" icon="fa6-solid:graduation-cap">Education</SidebarItem>
-    <SidebarItem sectionId="favorites" icon="fa6-solid:star">Favorites</SidebarItem>
+    <SidebarItem sectionId="achievements" icon="fa6-solid:trophy">{t('achievements')}</SidebarItem>
+    <SidebarItem sectionId="education" icon="fa6-solid:graduation-cap">{t('education')}</SidebarItem>
+    <SidebarItem sectionId="favorites" icon="fa6-solid:star">{t('favorites')}</SidebarItem>
   </Sidebar>
   <Basics entry={basicsEntry} id="basics" />
   <Section class="gap-8" id="skills">
-    <SectionTitle>Skills</SectionTitle>
+    <SectionTitle>{t('skills')}</SectionTitle>
     <VerticalList class="gap-8">
       <Subsection class="gap-2">
-        <SubsectionTitle>Technologies</SubsectionTitle>
+        <SubsectionTitle>{t('technologies')}</SubsectionTitle>
         <GridList class="gap-8" minColWidth="200px">
           <Skill withLevel entry={getEntry('skills', 'astro')} />
           <Skill withLevel entry={getEntry('skills', 'drizzle-orm')} />
@@ -69,7 +73,7 @@ const { basicsEntry, metadataEntry } = Astro.props;
         </GridList>
       </Subsection>
       <Subsection class="gap-2">
-        <SubsectionTitle>Tools</SubsectionTitle>
+        <SubsectionTitle>{t('tools')}</SubsectionTitle>
         <HorizontalList class="gap-3">
           <Skill entry={getEntry('skills', 'neon')} />
           <Skill entry={getEntry('skills', 'sentry')} />
@@ -78,7 +82,7 @@ const { basicsEntry, metadataEntry } = Astro.props;
         </HorizontalList>
       </Subsection>
       <Subsection class="gap-2">
-        <SubsectionTitle>Languages</SubsectionTitle>
+        <SubsectionTitle>{t('languages')}</SubsectionTitle>
         <HorizontalList class="gap-3">
           <Skill entry={getEntry('skills', 'english')} />
           <Skill entry={getEntry('skills', 'spanish')} />
@@ -87,7 +91,7 @@ const { basicsEntry, metadataEntry } = Astro.props;
     </VerticalList>
   </Section>
   <Section class="gap-8" id="jobs">
-    <SectionTitle>Work</SectionTitle>
+    <SectionTitle>{t('work')}</SectionTitle>
     <VerticalList class="gap-10">
       <Job entry={getEntry('jobs', 'meta')} />
       <Separator />
@@ -98,13 +102,13 @@ const { basicsEntry, metadataEntry } = Astro.props;
   </Section>
 
   <Section class="gap-8" id="achievements">
-    <SectionTitle>Achievements</SectionTitle>
+    <SectionTitle>{t('achievements')}</SectionTitle>
     <VerticalList class="gap-8">
       <Achievement entry={getEntry('achievements', 'reactathon-hackathon')} />
     </VerticalList>
   </Section>
   <Section class="gap-8" id="education">
-    <SectionTitle>Education</SectionTitle>
+    <SectionTitle>{t('education')}</SectionTitle>
     <VerticalList class="gap-10">
       <Education entry={getEntry('education', 'master')} />
       <Separator />
@@ -112,10 +116,10 @@ const { basicsEntry, metadataEntry } = Astro.props;
     </VerticalList>
   </Section>
   <Section class="gap-8" id="favorites">
-    <SectionTitle>Favorites</SectionTitle>
+    <SectionTitle>{t('favorites')}</SectionTitle>
     <VerticalList class="gap-10">
       <Subsection class="gap-2">
-        <SubsectionTitle>People I learn from</SubsectionTitle>
+        <SubsectionTitle>{t('people_i_learn_from')}</SubsectionTitle>
         <GridList class="gap-4 md:grid-cols-2">
           <Favorite image="person" entry={getEntry('favorites', 'people/addy-osmani')} />
           <Favorite image="person" entry={getEntry('favorites', 'people/anthony-fu')} />
@@ -128,7 +132,7 @@ const { basicsEntry, metadataEntry } = Astro.props;
     </VerticalList>
   </Section>
   <Section class="gap-8">
-    <SectionTitle>Interests</SectionTitle>
+    <SectionTitle>{t('interests')}</SectionTitle>
     <HorizontalList class="gap-x-4 gap-y-3">
       <Interest entry={getEntry('interests', 'cooking')} />
       <Interest entry={getEntry('interests', 'running')} />

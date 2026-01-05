@@ -28,8 +28,16 @@ interface Props {
 }
 
 const { basicsEntry, metadataEntry } = Astro.props;
-const context = getGlobalContext<ContextSlice<'website' | 'i18n'>>(Astro);
+const context = getGlobalContext<ContextSlice<'website' | 'i18n' | 'locale'>>(Astro);
 const t = context.i18n.t;
+
+const getSkill = async (id: string) => {
+  if (context.locale.code === 'es') {
+    const esEntry = await getEntry('skills', `${id}-es` as CollectionEntry<'skills'>['slug']);
+    if (esEntry) return esEntry;
+  }
+  return getEntry('skills', id as CollectionEntry<'skills'>['slug']);
+};
 ---
 
 <Layout class="gap-16 [&_section]:scroll-mt-8">
@@ -56,36 +64,42 @@ const t = context.i18n.t;
       <Subsection class="gap-2">
         <SubsectionTitle>{t('technologies')}</SubsectionTitle>
         <GridList class="gap-8" minColWidth="200px">
-          <Skill withLevel entry={getEntry('skills', 'astro')} />
-          <Skill withLevel entry={getEntry('skills', 'drizzle-orm')} />
-          <Skill withLevel entry={getEntry('skills', 'eslint')} />
-          <Skill withLevel entry={getEntry('skills', 'next')} />
-          <Skill withLevel entry={getEntry('skills', 'playwright')} />
-          <Skill withLevel entry={getEntry('skills', 'postgresql')} />
-          <Skill withLevel entry={getEntry('skills', 'react-testing-library')} />
-          <Skill withLevel entry={getEntry('skills', 'react')} />
-          <Skill withLevel entry={getEntry('skills', 'shadcn')} />
-          <Skill withLevel entry={getEntry('skills', 'tailwind')} />
-          <Skill withLevel entry={getEntry('skills', 'tanstack-query')} />
-          <Skill withLevel entry={getEntry('skills', 'trpc')} />
-          <Skill withLevel entry={getEntry('skills', 'typescript')} />
-          <Skill withLevel entry={getEntry('skills', 'vitest')} />
+          <Skill withLevel entry={getSkill('astro')} />
+          <Skill withLevel entry={getSkill('angular')} />
+          <Skill withLevel entry={getSkill('typescript')} />
+          <Skill withLevel entry={getSkill('sass')} />
+          <Skill withLevel entry={getSkill('primeng')} />
+          <Skill withLevel entry={getSkill('tailwind')} />
+          <Skill withLevel entry={getSkill('prettier')} />
+          <Skill withLevel entry={getSkill('eslint')} />
+          <Skill withLevel entry={getSkill('nest')} />
+          <Skill withLevel entry={getSkill('postgresql')} />
+          <Skill withLevel entry={getSkill('mongo')} />
+          <Skill withLevel entry={getSkill('firebase')} />
+          <Skill withLevel entry={getSkill('karma')} />
+          <Skill withLevel entry={getSkill('jasmine')} />
+          <Skill withLevel entry={getSkill('jest')} />
+          <Skill withLevel entry={getSkill('docker')} />
+          <Skill withLevel entry={getSkill('sonar')} />
+          <Skill withLevel entry={getSkill('react')} />
+          <Skill withLevel entry={getSkill('storybook')} />
+          <Skill withLevel entry={getSkill('ionic')} />
         </GridList>
       </Subsection>
       <Subsection class="gap-2">
         <SubsectionTitle>{t('tools')}</SubsectionTitle>
         <HorizontalList class="gap-3">
-          <Skill entry={getEntry('skills', 'neon')} />
-          <Skill entry={getEntry('skills', 'sentry')} />
-          <Skill entry={getEntry('skills', 'stripe')} />
-          <Skill entry={getEntry('skills', 'vercel')} />
+          <Skill entry={getSkill('neon')} />
+          <Skill entry={getSkill('sentry')} />
+          <Skill entry={getSkill('stripe')} />
+          <Skill entry={getSkill('vercel')} />
         </HorizontalList>
       </Subsection>
       <Subsection class="gap-2">
         <SubsectionTitle>{t('languages')}</SubsectionTitle>
         <HorizontalList class="gap-3">
-          <Skill entry={getEntry('skills', 'english')} />
-          <Skill entry={getEntry('skills', 'spanish')} />
+          <Skill entry={getSkill('english')} />
+          <Skill entry={getSkill('spanish')} />
         </HorizontalList>
       </Subsection>
     </VerticalList>

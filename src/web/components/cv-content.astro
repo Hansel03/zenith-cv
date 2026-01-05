@@ -87,19 +87,20 @@ const getSkill = async (id: string) => {
         </GridList>
       </Subsection>
       <Subsection class="gap-2">
-        <SubsectionTitle>{t('tools')}</SubsectionTitle>
+        <SubsectionTitle>{t('wanna_learn')}</SubsectionTitle>
         <HorizontalList class="gap-3">
-          <Skill entry={getSkill('neon')} />
-          <Skill entry={getSkill('sentry')} />
-          <Skill entry={getSkill('stripe')} />
-          <Skill entry={getSkill('vercel')} />
+          <Skill entry={getSkill('flutter')} />
+          <Skill entry={getSkill('react-native')} />
+          <Skill entry={getSkill('supabase')} />
+          <Skill entry={getSkill('cypress')} />
+          <Skill entry={getSkill('svelte')} />
         </HorizontalList>
       </Subsection>
       <Subsection class="gap-2">
         <SubsectionTitle>{t('languages')}</SubsectionTitle>
         <HorizontalList class="gap-3">
-          <Skill entry={getSkill('english')} />
           <Skill entry={getSkill('spanish')} />
+          <Skill entry={getSkill('english')} />
         </HorizontalList>
       </Subsection>
     </VerticalList>

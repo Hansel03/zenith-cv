@@ -38,6 +38,14 @@ const getSkill = async (id: string) => {
   }
   return getEntry('skills', id as CollectionEntry<'skills'>['slug']);
 };
+
+const getJob = async (id: string) => {
+  if (context.locale.code === 'es') {
+    const esEntry = await getEntry('jobs', `${id}-es` as CollectionEntry<'jobs'>['slug']);
+    if (esEntry) return esEntry;
+  }
+  return getEntry('jobs', id as CollectionEntry<'jobs'>['slug']);
+};
 ---
 
 <Layout class="gap-16 [&_section]:scroll-mt-8">
@@ -108,11 +116,11 @@ const getSkill = async (id: string) => {
   <Section class="gap-8" id="jobs">
     <SectionTitle>{t('work')}</SectionTitle>
     <VerticalList class="gap-10">
-      <Job entry={getEntry('jobs', 'meta')} />
+      <Job entry={getJob('consultec-lead')} />
       <Separator />
-      <Job entry={getEntry('jobs', 'shopify')} />
+      <Job entry={getJob('shopify')} />
       <Separator />
-      <Job entry={getEntry('jobs', 'codepen')} />
+      <Job entry={getJob('codepen')} />
     </VerticalList>
   </Section>
 

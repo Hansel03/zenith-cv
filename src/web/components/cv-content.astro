@@ -62,6 +62,22 @@ const getEducation = async (id: string) => {
   }
   return getEntry('education', id as CollectionEntry<'education'>['slug']);
 };
+
+const getFavorite = async (id: string) => {
+  if (context.locale.code === 'es') {
+    const esEntry = await getEntry('favorites', `${id}-es` as CollectionEntry<'favorites'>['slug']);
+    if (esEntry) return esEntry;
+  }
+  return getEntry('favorites', id as CollectionEntry<'favorites'>['slug']);
+};
+
+const getInterest = async (id: string) => {
+  if (context.locale.code === 'es') {
+    const esEntry = await getEntry('interests', `${id}-es` as CollectionEntry<'interests'>['slug']);
+    if (esEntry) return esEntry;
+  }
+  return getEntry('interests', id as CollectionEntry<'interests'>['slug']);
+};
 ---
 
 <Layout class="gap-16 [&_section]:scroll-mt-8">
@@ -164,12 +180,12 @@ const getEducation = async (id: string) => {
       <Subsection class="gap-2">
         <SubsectionTitle>{t('people_i_learn_from')}</SubsectionTitle>
         <GridList class="gap-4 md:grid-cols-2">
-          <Favorite image="person" entry={getEntry('favorites', 'people/addy-osmani')} />
-          <Favorite image="person" entry={getEntry('favorites', 'people/anthony-fu')} />
-          <Favorite image="person" entry={getEntry('favorites', 'people/dan-abramov')} />
-          <Favorite image="person" entry={getEntry('favorites', 'people/josh-w-comeau')} />
-          <Favorite image="person" entry={getEntry('favorites', 'people/kent-c-dodds')} />
-          <Favorite image="person" entry={getEntry('favorites', 'people/lee-robinson')} />
+          <Favorite image="person" entry={getFavorite('people/fernando')} />
+          <Favorite image="person" entry={getFavorite('people/midudev')} />
+          <Favorite image="person" entry={getFavorite('people/brais-moure')} />
+          <Favorite image="person" entry={getFavorite('people/fazt')} />
+          <Favorite image="person" entry={getFavorite('people/florin-pop')} />
+          <Favorite image="person" entry={getFavorite('people/lea-verou')} />
         </GridList>
       </Subsection>
     </VerticalList>
@@ -177,10 +193,10 @@ const getEducation = async (id: string) => {
   <Section class="gap-8">
     <SectionTitle>{t('interests')}</SectionTitle>
     <HorizontalList class="gap-x-4 gap-y-3">
-      <Interest entry={getEntry('interests', 'cooking')} />
-      <Interest entry={getEntry('interests', 'running')} />
-      <Interest entry={getEntry('interests', 'technical-blogging')} />
-      <Interest entry={getEntry('interests', 'video-montage')} />
+      <Interest entry={getInterest('cooking')} />
+      <Interest entry={getInterest('running')} />
+      <Interest entry={getInterest('technical-blogging')} />
+      <Interest entry={getInterest('video-montage')} />
     </HorizontalList>
   </Section>
 </Layout>

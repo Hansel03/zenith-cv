@@ -24,6 +24,7 @@
     "build": "tsx cli build",
     "preview": "astro preview",
     "check": "concurrently \"eslint .\" \"astro check\" \"prettier --check .\" -n eslint,astro,prettier -c magenta,red,yellow",
+    "check:format": "prettier --check .",
     "format": "prettier --write .",
     "generate": "tsx cli generate",
     "generate:pdf": "tsx cli pdf",
@@ -31,7 +32,8 @@
     "generate:og": "tsx cli og",
     "generate:og:watch": "nodemon --exec \"tsx cli og\"",
     "generate:favicons": "tsx cli favicons",
-    "update:colors": "tsx cli colors"
+    "update:colors": "tsx cli colors",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "0.9.6",
@@ -77,6 +79,7 @@
     "eslint-plugin-tailwindcss": "3.18.2",
     "execa": "9.6.1",
     "favicons": "7.2.0",
+    "husky": "9.1.7",
     "nodemon": "3.1.11",
     "prettier": "3.8.1",
     "prettier-plugin-astro": "0.14.1",

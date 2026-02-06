@@ -1,0 +1,21 @@
+
+echo '🎨 Checking code formatting before committing'
+# Check Prettier standards
+npm run check:format ||
+(
+    echo '❌ Code formatting check failed.
+            Prettier Check Failed. Run npm run format, add changes and try commit again.';
+    false;
+)
+
+echo '🔍 Checking lint standards before committing'
+
+# Check ESLint Standards
+npm run check ||
+(
+    echo '⚠️ ESLint validation failed.
+            ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+    false;
+)
+
+# This continues in prepare-commit-msg

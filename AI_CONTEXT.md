@@ -12,7 +12,7 @@ This file serves as the **Source of Truth** for AI assistants (Copilot, Cursor, 
 
 - **Framework**: [Astro 5.x](https://astro.build) (Server-Side Rendering & Static Site Generation)
 - **Language**: TypeScript (Strict mode)
-- **Styling**: Tailwind CSS v3.x + `@tailwindcss/typography`
+- **Styling**: Tailwind CSS v4.x (via `@tailwindcss/vite` plugin) + `@tailwindcss/typography`
 - **Content Engine**: Astro Content Collections (MDX files in `src/content/`)
 - **PDF Generation**: Puppeteer (headless Chrome) via custom CLI scripts
 - **Icons**: Iconify / astro-icon
@@ -30,7 +30,8 @@ This file serves as the **Source of Truth** for AI assistants (Copilot, Cursor, 
   - `commands/pdf.ts`: Logic for PDF generation using Puppeteer.
 - `public/`: Static assets (images, fonts).
 - `astro.config.ts`: Astro configuration.
-- `tailwind.config.ts`: Design tokens and theme configuration.
+- `tailwind.config.ts`: Design tokens and theme configuration (legacy format, loaded via `@config` directive).
+- `src/styles/tailwind.css`: Tailwind CSS v4 entry point.
 
 ## 4. Development Workflows
 
@@ -59,8 +60,9 @@ This file serves as the **Source of Truth** for AI assistants (Copilot, Cursor, 
 ### Styling
 
 - **Tailwind First**: Use utility classes for 99% of styling.
-- **No Global CSS**: Avoid writing custom CSS in `index.css` unless it's for global font settings or resets.
+- **No Global CSS**: Avoid writing custom CSS unless it's for global font settings or resets.
 - **Responsive**: Ensure designs work on Mobile (Web view) and A4 Paper (PDF view).
+- **@apply directive**: When using `@apply` in scoped `<style>` blocks (Astro components), add `@reference '../path/to/tailwind.css';` at the top of the style block.
 
 ### Content Management
 

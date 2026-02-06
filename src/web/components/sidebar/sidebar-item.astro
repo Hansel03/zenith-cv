@@ -28,6 +28,8 @@ const { icon, sectionId, title } = Astro.props;
 </li>
 
 <style>
+  @reference '../../../styles/tailwind.css';
+
   a[aria-current='page'] {
     @apply bg-color-button-bg text-color-button-bg-contrast;
   }

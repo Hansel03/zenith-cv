@@ -116,12 +116,16 @@ const { name, loading = 'lazy', ...props } = Astro.props;
 
 ### Styling with Tailwind
 
+- **Version**: Tailwind CSS v4.x via `@tailwindcss/vite` plugin
+- **Configuration**: CSS-first entry point at `src/styles/tailwind.css` with legacy config loaded via `@config` directive
 - **Utility-first**: Prefer Tailwind utilities over custom CSS
 - **Class merging**: Use `cn()` utility from `@/utils/cn` for conditional classes
 - **Custom colors**: Use semantic color tokens from `tailwind.config.ts`
   - `color-primary`, `color-text-title`, `color-bg-card`, etc.
+  - CSS variables defined in `src/styles/colors/` components
 - **Responsive**: Mobile-first approach, use `sm:`, `md:`, `lg:` prefixes
-- **Dark mode**: Use `dark:` prefix (dark mode is selector-based)
+- **Dark mode**: Use `dark:` prefix (dark mode is selector-based, default in v4)
+- **@apply in scoped styles**: Requires `@reference` directive pointing to the Tailwind CSS file
 
 Example:
 
@@ -183,12 +187,15 @@ zenith-cv/
 │   ├── pages/              # Astro routes
 │   ├── pdf/                # PDF-specific components/utils
 │   ├── styles/             # Global styles and color definitions
+│   │   ├── tailwind.css    # Tailwind CSS v4 entry point
+│   │   ├── colors/         # Color theme CSS variables
+│   │   └── fonts/          # Font definitions
 │   ├── types/              # TypeScript type definitions
 │   ├── utils/              # Utility functions
 │   └── web/                # Web-specific components/utils
 ├── public/                 # Static assets (served as-is)
-├── astro.config.ts         # Astro configuration
-├── tailwind.config.ts      # Tailwind theme configuration
+├── astro.config.ts         # Astro configuration (includes @tailwindcss/vite plugin)
+├── tailwind.config.ts      # Tailwind theme configuration (legacy format)
 ├── eslint.config.mjs       # ESLint configuration
 ├── prettier.config.mjs     # Prettier configuration
 └── tsconfig.json           # TypeScript configuration

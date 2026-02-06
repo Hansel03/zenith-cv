@@ -62,13 +62,15 @@ function getCustomColors() {
 
   const result: Record<string, Record<string, string>> = {};
 
+  // In Tailwind v4, colors with opacity support use hsl() with space-separated values
+  // The CSS variables contain H S% L% values (without the hsl() wrapper)
   for (const color of baseColors) {
-    result[color] = Object.fromEntries(shades.map((shade) => [shade, `hsl(var(--${color}-${shade}) / <alpha-value>)`]));
+    result[color] = Object.fromEntries(shades.map((shade) => [shade, `hsl(var(--${color}-${shade}))`]));
   }
 
   result.color = {};
   for (const color of elementColors) {
-    result.color[color] = `hsl(var(--${color}) / <alpha-value>)`;
+    result.color[color] = `hsl(var(--${color}))`;
   }
 
   return result;

@@ -6,8 +6,8 @@ import { join } from 'node:path';
 
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
 import compress from '@playform/compress';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField } from 'astro/config';
 import icon from 'astro-icon';
 import metaTags from 'astro-meta-tags';
@@ -15,6 +15,9 @@ import metaTags from 'astro-meta-tags';
 // https://astro.build/config
 export default defineConfig({
   site: getSiteUrl(),
+  vite: {
+    plugins: [tailwindcss()],
+  },
   env: {
     schema: {
       PUBLIC_UMAMI_WEBSITE_ID: envField.string({ context: 'client', access: 'public', optional: true }),
@@ -26,7 +29,6 @@ export default defineConfig({
     metaTags(),
     mdx(),
     icon(),
-    tailwind(),
     sitemap({ filter: (url) => new URL(url).pathname === '/' }),
     {
       name: 'remove-asset-sites',

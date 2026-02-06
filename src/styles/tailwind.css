@@ -1,0 +1,11 @@
+/*
+ * Tailwind CSS v4 Entry Point
+ *
+ * This file imports Tailwind CSS and loads the legacy configuration
+ * from tailwind.config.ts for backwards compatibility during migration.
+ */
+
+@import 'tailwindcss';
+
+/* Load legacy config for theme values (colors, spacing, fonts, typography) */
+@config '../../tailwind.config.ts';

@@ -4,12 +4,9 @@ import { enUS } from 'date-fns/locale';
 
 import { HorizontalList, VerticalList } from '@/components/list';
 import Separator from '@/components/separator.astro';
-import Achievement from '@/pdf/components/achievement.astro';
 import Basics from '@/pdf/components/basics.astro';
 import Education from '@/pdf/components/education.astro';
-import Favorite from '@/pdf/components/favorite.astro';
 import Footer from '@/pdf/components/footer.astro';
-import Interest from '@/pdf/components/interest.astro';
 import Job from '@/pdf/components/job.astro';
 import Layout from '@/pdf/components/layout.astro';
 import { Section, SectionTitle, Subsection, SubsectionTitle } from '@/pdf/components/section';
@@ -19,6 +16,7 @@ import AccentColors from '@/styles/colors/accent/indigo.astro';
 import DuskColors from '@/styles/colors/dusk/slate.astro';
 import ElementColors from '@/styles/colors/elements/default.astro';
 import Font from '@/styles/fonts/inter.astro';
+import { getLocalizedEducation, getLocalizedJob, getLocalizedSkill, getTranslation } from '@/utils/get-content';
 
 await initializePdfContext(Astro, {
   locale: enUS,
@@ -26,6 +24,8 @@ await initializePdfContext(Astro, {
   dateFormat: 'MMMM yyyy',
   website: '/',
 });
+
+const t = getTranslation(Astro);
 ---
 
 <Layout class="gap-6">
@@ -37,101 +37,74 @@ await initializePdfContext(Astro, {
   </Fragment>
   <Basics entry={getEntry('basics', 'main-pdf')} />
   <Section class="gap-4">
-    <SectionTitle>Skills</SectionTitle>
+    <SectionTitle>{t('skills')}</SectionTitle>
     <VerticalList class="gap-4">
       <Subsection class="gap-2">
-        <SubsectionTitle>Technologies</SubsectionTitle>
+        <SubsectionTitle>{t('technologies')}</SubsectionTitle>
         <HorizontalList class="gap-3">
-          <Skill withLevel entry={getEntry('skills', 'astro')} />
-          <Skill withLevel entry={getEntry('skills', 'drizzle-orm')} />
-          <Skill withLevel entry={getEntry('skills', 'eslint')} />
-          <Skill withLevel entry={getEntry('skills', 'next')} />
-          <Skill withLevel entry={getEntry('skills', 'playwright')} />
-          <Skill withLevel entry={getEntry('skills', 'postgresql')} />
-          <Skill withLevel entry={getEntry('skills', 'react-testing-library')} />
-          <Skill withLevel entry={getEntry('skills', 'react')} />
-          <Skill withLevel entry={getEntry('skills', 'shadcn')} />
-          <Skill withLevel entry={getEntry('skills', 'tailwind')} />
-          <Skill withLevel entry={getEntry('skills', 'tanstack-query')} />
-          <Skill withLevel entry={getEntry('skills', 'trpc')} />
-          <Skill withLevel entry={getEntry('skills', 'typescript')} />
-          <Skill withLevel entry={getEntry('skills', 'vitest')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'astro')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'angular')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'typescript')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'sass')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'primeng')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'tailwind')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'prettier')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'eslint')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'nest')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'postgresql')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'mongo')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'firebase')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'karma')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'jasmine')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'jest')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'docker')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'sonar')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'react')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'storybook')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'ionic')} />
         </HorizontalList>
       </Subsection>
       <Subsection class="gap-2">
-        <SubsectionTitle>Tools</SubsectionTitle>
+        <SubsectionTitle>{t('wanna_learn')}</SubsectionTitle>
         <HorizontalList class="gap-3">
-          <Skill entry={getEntry('skills', 'neon')} />
-          <Skill entry={getEntry('skills', 'sentry')} />
-          <Skill entry={getEntry('skills', 'stripe')} />
-          <Skill entry={getEntry('skills', 'vercel')} />
+          <Skill entry={getLocalizedSkill(Astro, 'flutter')} />
+          <Skill entry={getLocalizedSkill(Astro, 'react-native')} />
+          <Skill entry={getLocalizedSkill(Astro, 'supabase')} />
+          <Skill entry={getLocalizedSkill(Astro, 'cypress')} />
+          <Skill entry={getLocalizedSkill(Astro, 'svelte')} />
         </HorizontalList>
       </Subsection>
       <Subsection class="gap-2">
-        <SubsectionTitle>Languages</SubsectionTitle>
+        <SubsectionTitle>{t('languages')}</SubsectionTitle>
         <HorizontalList class="gap-3">
-          <Skill entry={getEntry('skills', 'english')} />
-          <Skill entry={getEntry('skills', 'spanish')} />
+          <Skill entry={getLocalizedSkill(Astro, 'spanish')} />
+          <Skill entry={getLocalizedSkill(Astro, 'english')} />
         </HorizontalList>
       </Subsection>
     </VerticalList>
   </Section>
   <Section class="gap-4">
-    <SectionTitle>Work</SectionTitle>
+    <SectionTitle>{t('work_experience')}</SectionTitle>
     <VerticalList class="gap-6">
-      <Job entry={getEntry('jobs', 'consultec-lead')} />
+      <Job entry={getLocalizedJob(Astro, 'consultec-lead')} />
       <Separator />
-      <Job entry={getEntry('jobs', 'consultec')} />
+      <Job entry={getLocalizedJob(Astro, 'consultec')} />
       <Separator />
-      <Job entry={getEntry('jobs', 'mensajeros-urbanos')} />
+      <Job entry={getLocalizedJob(Astro, 'mensajeros-urbanos')} />
       <Separator />
-      <Job entry={getEntry('jobs', 'pragma')} />
+      <Job entry={getLocalizedJob(Astro, 'pragma')} />
       <Separator />
-      <Job entry={getEntry('jobs', 'stackpointer')} />
+      <Job entry={getLocalizedJob(Astro, 'stackpointer')} />
     </VerticalList>
   </Section>
 
   <Section class="gap-4">
-    <SectionTitle>Achievements</SectionTitle>
-    <VerticalList class="gap-3">
-      <Achievement entry={getEntry('achievements', 'reactathon-hackathon')} />
-    </VerticalList>
-  </Section>
-  <Section class="gap-4">
-    <SectionTitle>Education</SectionTitle>
+    <SectionTitle>{t('education')}</SectionTitle>
     <VerticalList class="gap-6">
-      <Education entry={getEntry('education', 'engineer')} />
-      <Separator />
-      <Education entry={getEntry('education', 'sena')} />
+      <Education entry={getLocalizedEducation(Astro, 'engineer')} />
     </VerticalList>
-  </Section>
-  <Section class="gap-4">
-    <SectionTitle>Favorites</SectionTitle>
-    <VerticalList class="gap-5">
-      <Subsection class="gap-1.5">
-        <SubsectionTitle>People I learn from</SubsectionTitle>
-        <VerticalList class="gap-2.5">
-          <Favorite icon="material-symbols:person" entry={getEntry('favorites', 'people/fernando')} />
-          <Favorite icon="material-symbols:person" entry={getEntry('favorites', 'people/midudev')} />
-          <Favorite icon="material-symbols:person" entry={getEntry('favorites', 'people/brais-moure')} />
-          <Favorite icon="material-symbols:person" entry={getEntry('favorites', 'people/fazt')} />
-          <Favorite icon="material-symbols:person" entry={getEntry('favorites', 'people/florin-pop')} />
-          <Favorite icon="material-symbols:person" entry={getEntry('favorites', 'people/lea-verou')} />
-        </VerticalList>
-      </Subsection>
-    </VerticalList>
-  </Section>
-  <Section class="gap-4">
-    <SectionTitle>Interests</SectionTitle>
-    <HorizontalList class="gap-3">
-      <Interest entry={getEntry('interests', 'chess')} />
-      <Interest entry={getEntry('interests', 'watching-movies')} />
-      <Interest entry={getEntry('interests', 'video-games')} />
-      <Interest entry={getEntry('interests', 'reading')} />
-    </HorizontalList>
   </Section>
   <Footer>
-    I hereby give consent for my personal data included in my application to be processed for the purposes of the
-    recruitment process.
+    {t('footer')}
   </Footer>
 </Layout>

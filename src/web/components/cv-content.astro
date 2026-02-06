@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { getEntry } from 'astro:content';
 
 import { GridList, HorizontalList, VerticalList } from '@/components/list';
 import Separator from '@/components/separator.astro';
@@ -8,8 +7,15 @@ import AccentColors from '@/styles/colors/accent/indigo.astro';
 import DuskColors from '@/styles/colors/dusk/slate.astro';
 import ElementColors from '@/styles/colors/elements/default.astro';
 import Font from '@/styles/fonts/inter.astro';
-import type { ContextSlice } from '@/types/context';
-import { getGlobalContext } from '@/utils/get-global-context';
+import {
+  getLocalizedAchievement,
+  getLocalizedEducation,
+  getLocalizedFavorite,
+  getLocalizedInterest,
+  getLocalizedJob,
+  getLocalizedSkill,
+  getTranslation,
+} from '@/utils/get-content';
 import Achievement from '@/web/components/achievement.astro';
 import { Basics } from '@/web/components/basics';
 import Education from '@/web/components/education.astro';
@@ -28,56 +34,7 @@ interface Props {
 }
 
 const { basicsEntry, metadataEntry } = Astro.props;
-const context = getGlobalContext<ContextSlice<'website' | 'i18n' | 'locale'>>(Astro);
-const t = context.i18n.t;
-
-const getSkill = async (id: string) => {
-  if (context.locale.code === 'es') {
-    const esEntry = await getEntry('skills', `${id}-es` as CollectionEntry<'skills'>['slug']);
-    if (esEntry) return esEntry;
-  }
-  return getEntry('skills', id as CollectionEntry<'skills'>['slug']);
-};
-
-const getJob = async (id: string) => {
-  if (context.locale.code === 'es') {
-    const esEntry = await getEntry('jobs', `${id}-es` as CollectionEntry<'jobs'>['slug']);
-    if (esEntry) return esEntry;
-  }
-  return getEntry('jobs', id as CollectionEntry<'jobs'>['slug']);
-};
-
-const getAchievements = async (id: string) => {
-  if (context.locale.code === 'es') {
-    const esEntry = await getEntry('achievements', `${id}-es` as CollectionEntry<'achievements'>['slug']);
-    if (esEntry) return esEntry;
-  }
-  return getEntry('achievements', id as CollectionEntry<'achievements'>['slug']);
-};
-
-const getEducation = async (id: string) => {
-  if (context.locale.code === 'es') {
-    const esEntry = await getEntry('education', `${id}-es` as CollectionEntry<'education'>['slug']);
-    if (esEntry) return esEntry;
-  }
-  return getEntry('education', id as CollectionEntry<'education'>['slug']);
-};
-
-const getFavorite = async (id: string) => {
-  if (context.locale.code === 'es') {
-    const esEntry = await getEntry('favorites', `${id}-es` as CollectionEntry<'favorites'>['slug']);
-    if (esEntry) return esEntry;
-  }
-  return getEntry('favorites', id as CollectionEntry<'favorites'>['slug']);
-};
-
-const getInterest = async (id: string) => {
-  if (context.locale.code === 'es') {
-    const esEntry = await getEntry('interests', `${id}-es` as CollectionEntry<'interests'>['slug']);
-    if (esEntry) return esEntry;
-  }
-  return getEntry('interests', id as CollectionEntry<'interests'>['slug']);
-};
+const t = getTranslation(Astro);
 ---
 
 <Layout class="gap-16 [&_section]:scroll-mt-8">
@@ -104,74 +61,74 @@ const getInterest = async (id: string) => {
       <Subsection class="gap-2">
         <SubsectionTitle>{t('technologies')}</SubsectionTitle>
         <GridList class="gap-8" minColWidth="200px">
-          <Skill withLevel entry={getSkill('astro')} />
-          <Skill withLevel entry={getSkill('angular')} />
-          <Skill withLevel entry={getSkill('typescript')} />
-          <Skill withLevel entry={getSkill('sass')} />
-          <Skill withLevel entry={getSkill('primeng')} />
-          <Skill withLevel entry={getSkill('tailwind')} />
-          <Skill withLevel entry={getSkill('prettier')} />
-          <Skill withLevel entry={getSkill('eslint')} />
-          <Skill withLevel entry={getSkill('nest')} />
-          <Skill withLevel entry={getSkill('postgresql')} />
-          <Skill withLevel entry={getSkill('mongo')} />
-          <Skill withLevel entry={getSkill('firebase')} />
-          <Skill withLevel entry={getSkill('karma')} />
-          <Skill withLevel entry={getSkill('jasmine')} />
-          <Skill withLevel entry={getSkill('jest')} />
-          <Skill withLevel entry={getSkill('docker')} />
-          <Skill withLevel entry={getSkill('sonar')} />
-          <Skill withLevel entry={getSkill('react')} />
-          <Skill withLevel entry={getSkill('storybook')} />
-          <Skill withLevel entry={getSkill('ionic')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'astro')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'angular')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'typescript')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'sass')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'primeng')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'tailwind')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'prettier')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'eslint')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'nest')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'postgresql')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'mongo')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'firebase')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'karma')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'jasmine')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'jest')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'docker')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'sonar')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'react')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'storybook')} />
+          <Skill withLevel entry={getLocalizedSkill(Astro, 'ionic')} />
         </GridList>
       </Subsection>
       <Subsection class="gap-2">
         <SubsectionTitle>{t('wanna_learn')}</SubsectionTitle>
         <HorizontalList class="gap-3">
-          <Skill entry={getSkill('flutter')} />
-          <Skill entry={getSkill('react-native')} />
-          <Skill entry={getSkill('supabase')} />
-          <Skill entry={getSkill('cypress')} />
-          <Skill entry={getSkill('svelte')} />
+          <Skill entry={getLocalizedSkill(Astro, 'flutter')} />
+          <Skill entry={getLocalizedSkill(Astro, 'react-native')} />
+          <Skill entry={getLocalizedSkill(Astro, 'supabase')} />
+          <Skill entry={getLocalizedSkill(Astro, 'cypress')} />
+          <Skill entry={getLocalizedSkill(Astro, 'svelte')} />
         </HorizontalList>
       </Subsection>
       <Subsection class="gap-2">
         <SubsectionTitle>{t('languages')}</SubsectionTitle>
         <HorizontalList class="gap-3">
-          <Skill entry={getSkill('spanish')} />
-          <Skill entry={getSkill('english')} />
+          <Skill entry={getLocalizedSkill(Astro, 'spanish')} />
+          <Skill entry={getLocalizedSkill(Astro, 'english')} />
         </HorizontalList>
       </Subsection>
     </VerticalList>
   </Section>
   <Section class="gap-8" id="jobs">
-    <SectionTitle>{t('work')}</SectionTitle>
+    <SectionTitle>{t('work_experience')}</SectionTitle>
     <VerticalList class="gap-10">
-      <Job entry={getJob('consultec-lead')} />
+      <Job entry={getLocalizedJob(Astro, 'consultec-lead')} />
       <Separator />
-      <Job entry={getJob('consultec')} />
+      <Job entry={getLocalizedJob(Astro, 'consultec')} />
       <Separator />
-      <Job entry={getJob('mensajeros-urbanos')} />
+      <Job entry={getLocalizedJob(Astro, 'mensajeros-urbanos')} />
       <Separator />
-      <Job entry={getJob('pragma')} />
+      <Job entry={getLocalizedJob(Astro, 'pragma')} />
       <Separator />
-      <Job entry={getJob('stackpointer')} />
+      <Job entry={getLocalizedJob(Astro, 'stackpointer')} />
     </VerticalList>
   </Section>
 
   <Section class="gap-8" id="achievements">
     <SectionTitle>{t('achievements')}</SectionTitle>
     <VerticalList class="gap-8">
-      <Achievement entry={getAchievements('reactathon-hackathon')} />
+      <Achievement entry={getLocalizedAchievement(Astro, 'reactathon-hackathon')} />
     </VerticalList>
   </Section>
   <Section class="gap-8" id="education">
     <SectionTitle>{t('education')}</SectionTitle>
     <VerticalList class="gap-10">
-      <Education entry={getEducation('engineer')} />
+      <Education entry={getLocalizedEducation(Astro, 'engineer')} />
       <Separator />
-      <Education entry={getEducation('sena')} />
+      <Education entry={getLocalizedEducation(Astro, 'sena')} />
     </VerticalList>
   </Section>
   <Section class="gap-8" id="favorites">
@@ -180,12 +137,12 @@ const getInterest = async (id: string) => {
       <Subsection class="gap-2">
         <SubsectionTitle>{t('people_i_learn_from')}</SubsectionTitle>
         <GridList class="gap-4 md:grid-cols-2">
-          <Favorite image="person" entry={getFavorite('people/fernando')} />
-          <Favorite image="person" entry={getFavorite('people/midudev')} />
-          <Favorite image="person" entry={getFavorite('people/brais-moure')} />
-          <Favorite image="person" entry={getFavorite('people/fazt')} />
-          <Favorite image="person" entry={getFavorite('people/florin-pop')} />
-          <Favorite image="person" entry={getFavorite('people/lea-verou')} />
+          <Favorite image="person" entry={getLocalizedFavorite(Astro, 'people/fernando')} />
+          <Favorite image="person" entry={getLocalizedFavorite(Astro, 'people/midudev')} />
+          <Favorite image="person" entry={getLocalizedFavorite(Astro, 'people/brais-moure')} />
+          <Favorite image="person" entry={getLocalizedFavorite(Astro, 'people/fazt')} />
+          <Favorite image="person" entry={getLocalizedFavorite(Astro, 'people/florin-pop')} />
+          <Favorite image="person" entry={getLocalizedFavorite(Astro, 'people/lea-verou')} />
         </GridList>
       </Subsection>
     </VerticalList>
@@ -193,10 +150,10 @@ const getInterest = async (id: string) => {
   <Section class="gap-8">
     <SectionTitle>{t('interests')}</SectionTitle>
     <HorizontalList class="gap-x-4 gap-y-3">
-      <Interest entry={getInterest('chess')} />
-      <Interest entry={getInterest('watching-movies')} />
-      <Interest entry={getInterest('video-games')} />
-      <Interest entry={getInterest('reading')} />
+      <Interest entry={getLocalizedInterest(Astro, 'chess')} />
+      <Interest entry={getLocalizedInterest(Astro, 'watching-movies')} />
+      <Interest entry={getLocalizedInterest(Astro, 'video-games')} />
+      <Interest entry={getLocalizedInterest(Astro, 'reading')} />
     </HorizontalList>
   </Section>
 </Layout>

@@ -194,62 +194,39 @@ zenith-cv/
 │   ├── utils/              # Utility functions
 │   └── web/                # Web-specific components/utils
 ├── public/                 # Static assets (served as-is)
-├── astro.config.ts         # Astro configuration (includes @tailwindcss/vite plugin and Vercel adapter)
+├── astro.config.ts         # Astro configuration (includes @tailwindcss/vite plugin and Netlify adapter)
 ├── tailwind.config.ts      # Tailwind theme configuration (legacy format)
 ├── eslint.config.mjs       # ESLint configuration
 ├── prettier.config.mjs     # Prettier configuration
 └── tsconfig.json           # TypeScript configuration
 ```
 
-## Deployment (Vercel)
+## Deployment (Netlify)
 
-### Vercel Adapter
+### Netlify Adapter
 
-The project uses `@astrojs/vercel` as the deployment adapter, configured in `astro.config.ts`:
+The project uses `@astrojs/netlify` as the deployment adapter, configured in `astro.config.ts`:
 
 ```typescript
-import vercel from '@astrojs/vercel';
+import netlify from '@astrojs/netlify';
 
 export default defineConfig({
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-  }),
+  adapter: netlify(),
 });
 ```
 
-- **Output mode**: Server-side rendering (SSR) optimized for Vercel
-- **Web Analytics**: Enabled by default via the adapter configuration (collects page views and visitor data)
+- **Output mode**: Server-side rendering (SSR) optimized for Netlify
+- **Build configuration**: Defined in `netlify.toml`
 
-### Speed Insights
+### Asset Generation During Build
 
-The project includes `@vercel/speed-insights` for real-user performance monitoring (Core Web Vitals). It's integrated in `src/web/components/analytics/analytics.astro`:
+The build process automatically generates PDFs and OG images using Puppeteer. Netlify's build environment supports Puppeteer natively after reinstallation (handled automatically in `cli/commands/build.ts`).
 
-```astro
----
-import SpeedInsights from '@vercel/speed-insights/astro';
----
+### Environment Variables for Netlify
 
-<SpeedInsights />
-```
+The site URL is automatically detected on Netlify through `process.env.URL`. For custom domains, Netlify handles this automatically.
 
-**Note**: Speed Insights is only included in web pages (via the `Analytics` component in web layout), not in PDF templates.
-
-### Environment Variables for Vercel
-
-The site URL is automatically detected on Vercel. For custom domains or local development:
-
-- **ASTRO_SITE**: Set this in Vercel project settings for custom domains
-- Vercel auto-detects `VERCEL_URL` during builds
-
-### Vercel Dashboard Features
-
-Once deployed to Vercel, you can access:
-
-- **Analytics**: Page views, visitors, and traffic sources
-- **Speed Insights**: Core Web Vitals (LCP, FID, CLS) from real users
-- **Logs**: Server-side rendering logs and errors
+- **ASTRO_SITE**: Optional, set in Netlify dashboard for custom domain override
 
 ## Important Notes
 
@@ -259,7 +236,7 @@ Once deployed to Vercel, you can access:
 4. **Type Safety**: Leverage Astro's type checking with `astro check` command.
 5. **CLI Context**: The `cli/` directory contains Node.js scripts that use Puppeteer and other Node APIs.
 6. **Responsive Design**: Web view must work on mobile; PDF view must fit A4 paper.
-7. **Vercel Deployment**: The project is configured for Vercel with SSR, Web Analytics, and Speed Insights enabled.
+7. **Netlify Deployment**: The project is configured for Netlify with SSR and automatic asset generation during build.
 
 ## AI Assistant Persona
 

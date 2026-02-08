@@ -1,12 +1,10 @@
 ---
-import SpeedInsights from '@vercel/speed-insights/astro';
 import { PUBLIC_POSTHOG_API_HOST, PUBLIC_POSTHOG_API_KEY, PUBLIC_UMAMI_WEBSITE_ID } from 'astro:env/client';
 
 import Posthog from './posthog.astro';
 import Umami from './umami.astro';
 ---
 
-<SpeedInsights />
 {PUBLIC_UMAMI_WEBSITE_ID && <Umami websiteId={PUBLIC_UMAMI_WEBSITE_ID} />}
 {
   PUBLIC_POSTHOG_API_HOST && PUBLIC_POSTHOG_API_KEY && (

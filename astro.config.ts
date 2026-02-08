@@ -5,8 +5,8 @@ import { rm } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import mdx from '@astrojs/mdx';
+import netlify from '@astrojs/netlify';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel';
 import compress from '@playform/compress';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField } from 'astro/config';
@@ -56,11 +56,7 @@ export default defineConfig({
     collections: true,
   },
 
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-  }),
+  adapter: netlify(),
 });
 
 async function removeIfExists(path: string) {

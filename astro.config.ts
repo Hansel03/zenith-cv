@@ -6,6 +6,7 @@ import { join } from 'node:path';
 
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 import compress from '@playform/compress';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField } from 'astro/config';
@@ -15,9 +16,11 @@ import metaTags from 'astro-meta-tags';
 // https://astro.build/config
 export default defineConfig({
   site: getSiteUrl(),
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   env: {
     schema: {
       PUBLIC_UMAMI_WEBSITE_ID: envField.string({ context: 'client', access: 'public', optional: true }),
@@ -25,6 +28,7 @@ export default defineConfig({
       PUBLIC_POSTHOG_API_KEY: envField.string({ context: 'client', access: 'public', optional: true }),
     },
   },
+
   integrations: [
     metaTags(),
     mdx(),
@@ -47,9 +51,16 @@ export default defineConfig({
       },
     }),
   ],
+
   legacy: {
     collections: true,
   },
+
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
 });
 
 async function removeIfExists(path: string) {
